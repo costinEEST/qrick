@@ -1,0 +1,278 @@
+{
+  "version": "0.9.0",
+  "target_path": null,
+  "overall_passed": true,
+  "overall_status": "passed",
+  "incomplete_scans": [],
+  "total_validators": 1,
+  "total_skipped": 0,
+  "total_advisory_skipped": 0,
+  "total_errors": 0,
+  "total_warnings": 0,
+  "severity_counts": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "finding_counts": {
+    "raw_occurrences": 0,
+    "distinct_occurrences": 0,
+    "unique_findings": 0,
+    "duplicates_removed": 0,
+    "occurrences_grouped": 0,
+    "raw_by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "info": 0
+    },
+    "unique_by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "info": 0
+    }
+  },
+  "finding_groups": [],
+  "message_counts": {
+    "informational": 0,
+    "independent_errors": 0,
+    "independent_warnings": 0
+  },
+  "skills": [
+    {
+      "name": "qrick-release",
+      "passed": true,
+      "issue_count": 0
+    }
+  ],
+  "contributors": [
+    {
+      "author": "Unknown",
+      "items": [
+        {
+          "name": "qrick-release",
+          "passed": true,
+          "issue_count": 0
+        }
+      ],
+      "total_items": 1,
+      "passed_count": 1,
+      "failed_count": 0,
+      "total_issues": 0
+    }
+  ],
+  "top_issues": [],
+  "results": [
+    {
+      "validator": "QUALITY",
+      "description": "Skill quality scoring across Correctness (35%), Discoverability (25%), Reliability (25%), and Efficiency (15%)",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "quality_score",
+          "message": "Score: 100.0/100 (Grade: A)",
+          "metadata": {
+            "overall_score": 100.0,
+            "grade": "A",
+            "skill_type": "guide-only"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] quality_score: Score: 100.0/100 (Grade: A)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "quality": {
+        "overall_score": 100.0,
+        "grade": "A",
+        "skill_type": "guide-only",
+        "skill_name": "qrick-release",
+        "dimensions": {
+          "correctness": {
+            "score": 100.0,
+            "weight": 0.35,
+            "issues_count": 0,
+            "issues": []
+          },
+          "discoverability": {
+            "score": 100.0,
+            "weight": 0.25,
+            "issues_count": 0,
+            "issues": []
+          },
+          "reliability": {
+            "score": 100.0,
+            "weight": 0.25,
+            "issues_count": 0,
+            "issues": []
+          },
+          "efficiency": {
+            "score": 100.0,
+            "weight": 0.15,
+            "issues_count": 0,
+            "issues": []
+          }
+        },
+        "metrics": {
+          "total_tokens": 2760,
+          "estimated_tokens": 2760,
+          "estimate_method": "characters/4",
+          "recommended_max_tokens": 5000,
+          "frontmatter_tokens": 59,
+          "instructions_tokens": 2698,
+          "script_count": 0,
+          "has_examples": true,
+          "has_error_handling": true,
+          "has_frontmatter": true,
+          "has_instructions": true,
+          "has_scripts": false,
+          "has_lib_module": false
+        }
+      },
+      "publication_target": {
+        "skill_name": "qrick-release",
+        "skill_digest": "sha256:2badcebd899925333fd039be38bf34480fc5be8724e89e8362483a97cde5dde7",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "quality"
+      }
+    }
+  ],
+  "benchmark_policy": {
+    "tier2_required": true,
+    "tier3_required": true
+  },
+  "publication_status": "incomplete",
+  "publication": {
+    "status": "incomplete",
+    "eligible": false,
+    "reasons": [
+      "Tier 1 did not run every required check: code-integrity, license, lint, pii, schema, security, unicode, version.",
+      "Required recognized built-in Tier 2 evidence is missing.",
+      "Tier 3 lacks publication-complete execution evidence."
+    ],
+    "tier3": {
+      "status": "not_run",
+      "evidence_complete": false,
+      "execution_status": "not_run",
+      "verdict": "not_run",
+      "reason": "Tier 3 lacks publication-complete execution evidence."
+    }
+  },
+  "quality_config": {
+    "source": "packaged",
+    "file": null,
+    "digest": "sha256:298ff2bf62132c8154217b7aa59fc1fd04f28cf75372f55620a2cbcd951d6549",
+    "min_score": 70
+  },
+  "evaluated_source": null,
+  "quality_summary": [
+    {
+      "overall_score": 100.0,
+      "grade": "A",
+      "skill_type": "guide-only",
+      "skill_name": "qrick-release",
+      "dimensions": {
+        "correctness": {
+          "score": 100.0,
+          "weight": 0.35,
+          "issues_count": 0,
+          "issues": []
+        },
+        "discoverability": {
+          "score": 100.0,
+          "weight": 0.25,
+          "issues_count": 0,
+          "issues": []
+        },
+        "reliability": {
+          "score": 100.0,
+          "weight": 0.25,
+          "issues_count": 0,
+          "issues": []
+        },
+        "efficiency": {
+          "score": 100.0,
+          "weight": 0.15,
+          "issues_count": 0,
+          "issues": []
+        }
+      },
+      "metrics": {
+        "total_tokens": 2760,
+        "estimated_tokens": 2760,
+        "estimate_method": "characters/4",
+        "recommended_max_tokens": 5000,
+        "frontmatter_tokens": 59,
+        "instructions_tokens": 2698,
+        "script_count": 0,
+        "has_examples": true,
+        "has_error_handling": true,
+        "has_frontmatter": true,
+        "has_instructions": true,
+        "has_scripts": false,
+        "has_lib_module": false
+      }
+    }
+  ],
+  "generated_at": "2026-11-17T13:14:35.227181+00:00"
+}

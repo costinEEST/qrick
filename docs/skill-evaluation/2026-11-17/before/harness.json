@@ -1,0 +1,61 @@
+{
+  "harness_compatibility": {
+    "/Users/costi/Desktop/github/url-to-qr/.agents/skills/qrick-development": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Implement or fix QRick generation, camera scanning, shared panel UI, bookmarklet behavior, and extension entry points. Use for application changes in this repository, rather than store-only preparation or test-only investigation."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 3,
+          "desc_chars": 743,
+          "folder": "/Users/costi/Desktop/github/url-to-qr/.agents/skills"
+        }
+      }
+    ],
+    "/Users/costi/Desktop/github/url-to-qr/.agents/skills/qrick-release": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Prepare or review QRick release bundles, store listings, privacy disclosures, screenshots, licenses, and reproducible source archives. Use for local packaging and publication readiness; publishing, signing, tagging, and pushing follow the user's explicit requested scope."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 3,
+          "desc_chars": 743,
+          "folder": "/Users/costi/Desktop/github/url-to-qr/.agents/skills"
+        }
+      }
+    ],
+    "/Users/costi/Desktop/github/url-to-qr/.agents/skills/qrick-testing": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Diagnose QRick bugs and verify camera behavior, popup layout, bookmarklet artifacts, and local browser extensions. Use for test selection, browser MCP investigation, and regression checks; store submission preparation belongs to qrick-release."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 3,
+          "desc_chars": 743,
+          "folder": "/Users/costi/Desktop/github/url-to-qr/.agents/skills"
+        }
+      }
+    ]
+  }
+}

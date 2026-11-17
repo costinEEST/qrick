@@ -1,0 +1,13 @@
+[project]
+name = "qrick-skill-evaluation"
+version = "0.1.0"
+description = "Isolated NVIDIA skill review tooling; not part of QRick runtime"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "skillevaluator @ git+https://github.com/NVIDIA/SkillEvaluator.git@64b237f017264e7a82447d7e1a217d8893ed7e84",
+    "skillspector @ https://github.com/NVIDIA/SkillSpector/releases/download/v2.13.4/skillspector-2.13.4-py3-none-any.whl",
+]
+
+[tool.uv]
+package = false
+required-version = ">=0.13.6,<0.14"

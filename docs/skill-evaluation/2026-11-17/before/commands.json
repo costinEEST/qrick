@@ -1,0 +1,61 @@
+[
+  {
+    "skill": "qrick-development",
+    "command": [
+      "quality-check",
+      ".agents/skills/qrick-development",
+      "-r",
+      "cli",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17/before/qrick-development"
+    ],
+    "exit_code": 0
+  },
+  {
+    "skill": "qrick-release",
+    "command": [
+      "quality-check",
+      ".agents/skills/qrick-release",
+      "-r",
+      "cli",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17/before/qrick-release"
+    ],
+    "exit_code": 0
+  },
+  {
+    "skill": "qrick-testing",
+    "command": [
+      "quality-check",
+      ".agents/skills/qrick-testing",
+      "-r",
+      "cli",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17/before/qrick-testing"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "harness-check",
+      ".agents/skills",
+      "--harness",
+      "codex",
+      "--json",
+      "docs/skill-evaluation/2026-11-17/before/harness.json"
+    ],
+    "exit_code": 0
+  }
+]

@@ -1,0 +1,3 @@
+interface:
+  display_name: "QRick Development"
+  short_description: "Implement shared QRick UI and scanning behavior"

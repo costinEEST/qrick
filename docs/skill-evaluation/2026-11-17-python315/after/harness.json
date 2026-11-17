@@ -1,0 +1,61 @@
+{
+  "harness_compatibility": {
+    "/Users/costi/Desktop/github/url-to-qr/.agents/skills/qrick-development": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for QRick feature changes: generation, scanning, shared UI, bookmarklet behavior, and extension entry points."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 3,
+          "desc_chars": 353,
+          "folder": "/Users/costi/Desktop/github/url-to-qr/.agents/skills"
+        }
+      }
+    ],
+    "/Users/costi/Desktop/github/url-to-qr/.agents/skills/qrick-release": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for QRick release preparation: bundles, store listings, privacy disclosures, branding assets, and reproducible sources."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 3,
+          "desc_chars": 353,
+          "folder": "/Users/costi/Desktop/github/url-to-qr/.agents/skills"
+        }
+      }
+    ],
+    "/Users/costi/Desktop/github/url-to-qr/.agents/skills/qrick-testing": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for QRick bug investigation and verification: camera lifecycle, popup layout, bookmarklets, and local extensions."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 3,
+          "desc_chars": 353,
+          "folder": "/Users/costi/Desktop/github/url-to-qr/.agents/skills"
+        }
+      }
+    ]
+  }
+}

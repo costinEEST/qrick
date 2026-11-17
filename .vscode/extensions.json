@@ -1,3 +1,9 @@
 {
-  "recommendations": ["vitest.explorer", "esbenp.prettier-vscode"]
+  "recommendations": [
+    "vitest.explorer",
+    "esbenp.prettier-vscode",
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "astral-sh.ty"
+  ]
 }

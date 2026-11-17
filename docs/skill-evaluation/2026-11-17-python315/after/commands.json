@@ -1,0 +1,148 @@
+[
+  {
+    "skill": "qrick-development",
+    "check": "quality",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "tools/skill-evaluation",
+      "--locked",
+      "skillevaluator",
+      "quality-check",
+      ".agents/skills/qrick-development",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17-python315/after/qrick-development"
+    ],
+    "exit_code": 0
+  },
+  {
+    "skill": "qrick-development",
+    "check": "static",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "tools/skill-evaluation",
+      "--locked",
+      "skillevaluator",
+      "tier1",
+      ".agents/skills/qrick-development",
+      "--no-llm",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17-python315/after/qrick-development/static"
+    ],
+    "exit_code": 0
+  },
+  {
+    "skill": "qrick-release",
+    "check": "quality",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "tools/skill-evaluation",
+      "--locked",
+      "skillevaluator",
+      "quality-check",
+      ".agents/skills/qrick-release",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17-python315/after/qrick-release"
+    ],
+    "exit_code": 0
+  },
+  {
+    "skill": "qrick-release",
+    "check": "static",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "tools/skill-evaluation",
+      "--locked",
+      "skillevaluator",
+      "tier1",
+      ".agents/skills/qrick-release",
+      "--no-llm",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17-python315/after/qrick-release/static"
+    ],
+    "exit_code": 0
+  },
+  {
+    "skill": "qrick-testing",
+    "check": "quality",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "tools/skill-evaluation",
+      "--locked",
+      "skillevaluator",
+      "quality-check",
+      ".agents/skills/qrick-testing",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17-python315/after/qrick-testing"
+    ],
+    "exit_code": 0
+  },
+  {
+    "skill": "qrick-testing",
+    "check": "static",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "tools/skill-evaluation",
+      "--locked",
+      "skillevaluator",
+      "tier1",
+      ".agents/skills/qrick-testing",
+      "--no-llm",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17-python315/after/qrick-testing/static"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "tools/skill-evaluation",
+      "--locked",
+      "skillevaluator",
+      "harness-check",
+      ".agents/skills",
+      "--harness",
+      "codex",
+      "--json",
+      "docs/skill-evaluation/2026-11-17-python315/after/harness.json"
+    ],
+    "exit_code": 0
+  }
+]

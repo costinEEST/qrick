@@ -1,0 +1,3 @@
+interface:
+  display_name: "QRick Testing"
+  short_description: "Debug and verify QRick in local browsers"

@@ -6,3 +6,10 @@ src/extension/public/icons/
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
+
+# Development-only Python tooling
+# Matches the root environment and tools/skill-evaluation/.venv
+.venv/
+__pycache__/
+*.py[cod]
+.ruff_cache/

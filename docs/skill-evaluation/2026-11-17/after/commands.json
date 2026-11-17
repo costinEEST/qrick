@@ -1,0 +1,110 @@
+[
+  {
+    "skill": "qrick-development",
+    "command": [
+      "quality-check",
+      ".agents/skills/qrick-development",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17/after/qrick-development"
+    ],
+    "exit_code": 0
+  },
+  {
+    "skill": "qrick-release",
+    "command": [
+      "quality-check",
+      ".agents/skills/qrick-release",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17/after/qrick-release"
+    ],
+    "exit_code": 0
+  },
+  {
+    "skill": "qrick-development",
+    "command": [
+      "tier1",
+      ".agents/skills/qrick-development",
+      "--no-llm",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17/after/qrick-development/static"
+    ],
+    "exit_code": 0,
+    "scanner_version": "2.13.4",
+    "scanner_python": "3.13",
+    "scanner_override": "explicit executable from uv Python 3.13 environment"
+  },
+  {
+    "skill": "qrick-release",
+    "command": [
+      "tier1",
+      ".agents/skills/qrick-release",
+      "--no-llm",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17/after/qrick-release/static"
+    ],
+    "exit_code": 0,
+    "scanner_version": "2.13.4",
+    "scanner_python": "3.13",
+    "scanner_override": "explicit executable from uv Python 3.13 environment"
+  },
+  {
+    "skill": "qrick-testing",
+    "command": [
+      "quality-check",
+      ".agents/skills/qrick-testing",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17/after/qrick-testing"
+    ],
+    "exit_code": 0,
+    "scanner_version": "2.13.4",
+    "scanner_python": "3.13"
+  },
+  {
+    "skill": "qrick-testing",
+    "command": [
+      "tier1",
+      ".agents/skills/qrick-testing",
+      "--no-llm",
+      "-r",
+      "json",
+      "-r",
+      "markdown",
+      "-o",
+      "docs/skill-evaluation/2026-11-17/after/qrick-testing/static"
+    ],
+    "exit_code": 0,
+    "scanner_version": "2.13.4",
+    "scanner_python": "3.13"
+  },
+  {
+    "command": [
+      "harness-check",
+      ".agents/skills",
+      "--harness",
+      "codex",
+      "--json",
+      "docs/skill-evaluation/2026-11-17/after/harness.json"
+    ],
+    "exit_code": 0
+  }
+]

@@ -1,6 +1,14 @@
 {
   "editor.formatOnSave": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "files.associations": { "*.css": "css" },
-  "search.exclude": { "dist": true }
+  "files.associations": {
+    "*.css": "css"
+  },
+  "search.exclude": {
+    "dist": true
+  },
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  }
 }

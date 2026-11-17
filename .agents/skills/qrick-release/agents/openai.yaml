@@ -1,0 +1,3 @@
+interface:
+  display_name: "QRick Release"
+  short_description: "Prepare QRick packages, listings, and store assets"
