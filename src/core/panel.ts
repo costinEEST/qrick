@@ -15,6 +15,7 @@ import {
   toSvgString,
   type Ecc,
 } from './qr'
+import { createScanner, type DetectorFactory } from './scanner'
 import { isLoopback, resolveLink, type ResolvedLink } from './link'
 
 export interface PanelOptions {
@@ -25,6 +26,9 @@ export interface PanelOptions {
   emptyNote?: string
   /** Renders the close button. The bookmarklet dialog needs one; the popup doesn't. */
   onClose?: () => void
+  onScan?: () => void
+  scanInitially?: boolean
+  createDetector?: DetectorFactory
 }
 
 export interface Panel {
@@ -51,7 +55,7 @@ const DEBOUNCE_MS = 110
 
 export function createPanel(options: PanelOptions = {}): Panel {
   const {
-    title = 'Scan to open on your phone',
+    title = 'Create a QR code',
     value: initialValue = '',
     emptyNote = 'Paste a link to make a QR code.',
     onClose,
@@ -141,7 +145,28 @@ export function createPanel(options: PanelOptions = {}): Panel {
     ]),
   ])
 
-  const root: El = el('div', { class: 'qrick' }, [bar, input, status, stage, actions, optionsBlock])
+  const generator = el('div', { class: 'qrick__generator' }, [input, status, stage, actions, optionsBlock])
+  const scanner = createScanner((value) => {
+    setValue(value)
+    showMode(false)
+    input.focus()
+  }, options.createDetector)
+  const generateMode = el('button', { type: 'button', class: 'qrick__mode', 'aria-pressed': 'true' }, ['Generate'])
+  const scanMode = el('button', { type: 'button', class: 'qrick__mode', 'aria-pressed': 'false' }, ['Scan'])
+  const modes = el('div', { class: 'qrick__actions', role: 'group', 'aria-label': 'QR mode' }, [generateMode, scanMode])
+  const root: El = el('div', { class: 'qrick' }, [bar, modes, generator, scanner.root])
+  scanner.root.hidden = true
+  function showMode(scan: boolean) {
+    generator.hidden = scan
+    scanner.root.hidden = !scan
+    generateMode.setAttribute('aria-pressed', String(!scan))
+    scanMode.setAttribute('aria-pressed', String(scan))
+    heading.textContent = scan ? 'Scan a QR code' : title
+    if (!scan) scanner.stop()
+  }
+  generateMode.addEventListener('click', () => showMode(false))
+  scanMode.addEventListener('click', () => options.onScan ? options.onScan() : showMode(true))
+  if (options.scanInitially) showMode(true)
 
   // --- behaviour -----------------------------------------------------------
 
@@ -287,12 +312,17 @@ export function createPanel(options: PanelOptions = {}): Panel {
     root,
     setValue,
     focus() {
+      if (!scanner.root.hidden) {
+        scanner.root.querySelector('button')?.focus()
+        return
+      }
       input.focus()
       // Select-all means a paste replaces instead of appending, which is what
       // someone reaching for this field almost always wants.
       input.select()
     },
     destroy() {
+      scanner.destroy()
       if (timer) clearTimeout(timer)
       if (resetCopyLabel) clearTimeout(resetCopyLabel)
       for (const url of objectUrls) URL.revokeObjectURL(url)

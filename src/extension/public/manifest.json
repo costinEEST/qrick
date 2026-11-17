@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
   "name": "QRick",
-  "version": "1.0.1",
-  "description": "Turn the page you are on into a QR code, then scan it with your phone.",
+  "version": "1.1.0",
+  "description": "Generate and scan QR codes. Everything stays on your device.",
   "homepage_url": "https://github.com/costinEEST/url-to-qr",
   "minimum_chrome_version": "153",
   "action": {
     "default_popup": "popup.html",
-    "default_title": "QRick — QR code for this page",
+    "default_title": "QRick — Generate or scan QR codes",
     "default_icon": {
       "16": "icons/icon-16.png",
       "32": "icons/icon-32.png",
@@ -32,5 +32,8 @@
       },
       "description": "Open QRick for the current tab"
     }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
   }
 }

@@ -5,13 +5,16 @@
  * it for the current tab, which is enough to read that tab's URL — no host
  * permissions, no "can read all your data on every website" warning.
  */
+import { createExtensionDetector } from '../core/scanner-decoder'
 import { createPanel } from '../core/panel'
 import { panelCss } from '../core/styles'
 import { isInternalPage } from '../core/link'
 
 /** Firefox and Safari expose `browser`; Chrome and Edge expose `chrome`. */
 interface TabsApi {
+  runtime: { getURL(path: string): string }
   tabs: {
+    create(info: { url: string }): Promise<unknown>
     query(info: { active: boolean; currentWindow: boolean }): Promise<{ url?: string }[]>
   }
 }
@@ -42,13 +45,22 @@ async function main() {
   const internal = isInternalPage(url)
 
   const panel = createPanel({
+    createDetector: createExtensionDetector,
+    scanInitially: location.search === '?scan',
+    onScan: location.search === '?scan' ? undefined : () => {
+      if (api) void api.tabs.create({ url: api.runtime.getURL('popup.html?scan') })
+    },
     value: internal ? '' : (url ?? ''),
-    title: 'Scan to open on your phone',
+    title: 'Create a QR code',
     emptyNote: internal
       ? 'This browser page has no link to share. Paste one instead.'
       : 'Paste a link to make a QR code.',
   })
 
+  if (location.search === '?scan') {
+    document.body.style.width = 'min(480px, 100%)'
+    document.body.style.margin = '0 auto'
+  }
   mount.append(panel.root)
   panel.focus()
 }

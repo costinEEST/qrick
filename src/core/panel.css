@@ -16,6 +16,7 @@
   --q-gap: 12px;
 
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--q-gap);
   padding: 16px;
   background: var(--q-paper);
@@ -84,7 +85,7 @@
 }
 .qrick__input::placeholder { color: var(--q-mute); font-family: var(--q-sans); }
 
-.qrick :is(input, textarea, button, summary, select):focus-visible {
+.qrick :is(input, textarea, button, summary, select, a):focus-visible {
   outline: 2px solid var(--q-signal);
   outline-offset: 2px;
 }
@@ -104,14 +105,15 @@
 .qrick__stage {
   display: grid;
   place-items: center;
+  grid-template-columns: minmax(0, 1fr);
   margin: 0;
   padding: 14px;
 }
 
-.qrick__frame { position: relative; }
+.qrick__frame { position: relative; width: min(260px, 100%); }
 
 .qrick__plate {
-  width: clamp(180px, 62vmin, 260px);
+  width: 100%;
   aspect-ratio: 1;
   padding: 6px;
   border-radius: 6px;
@@ -232,4 +234,27 @@
 
 @media (prefers-reduced-motion: reduce) {
   .qrick *, .qrick *::before, .qrick *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}
+
+.qrick__generator, .qrick__scanner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--q-gap); }
+.qrick [hidden] { display: none !important; }
+.qrick__scanner video { display: block; width: 100%; max-height: 260px; background: #000; border-radius: var(--q-radius); }
+.qrick__mode { flex: 1; padding: 10px; border: 1px solid var(--q-line); border-radius: 8px; background: var(--q-paper); color: var(--q-ink); font: inherit; text-align: center; cursor: pointer; }
+.qrick__mode[aria-pressed="true"] { background: var(--q-wash); border-color: var(--q-signal); }
+.qrick__mode:disabled { opacity: .5; cursor: default; }
+
+.qrick__status[data-tone="unsupported"] {
+  margin: 0;
+  padding: 12px;
+  border-inline-start: 3px solid var(--q-warn);
+  border-radius: 6px;
+  background: var(--q-wash);
+  color: var(--q-ink);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.qrick__status a {
+  color: var(--q-signal);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }

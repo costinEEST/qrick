@@ -47,7 +47,8 @@ const bundle = readFileSync(bundlePath, 'utf8')
 
 // `void 0` keeps the browser from navigating away if the IIFE ever returns
 // something truthy.
-const source = `(()=>{${bundle}})();void 0`
+const notices = readFileSync(resolve(root, 'node_modules/uqr/LICENSE'), 'utf8')
+const source = `/*${notices.replace(/\*\//g, '* /')}*/(()=>{${bundle}})();void 0`
 
 /**
  * `encodeURIComponent` would escape most of the bundle and add ~45% to its
@@ -64,6 +65,10 @@ const escape = (text) =>
   )
 
 const href = `javascript:${escape(source)}`
+// Firefox refuses to save bookmark URLs at or above 65,536 characters.
+if (new URL(href).href.length >= 65_536) {
+  throw new Error('Bookmarklet exceeds the Firefox bookmark URL limit (65,536 characters).')
+}
 
 mkdirSync(releaseDir, { recursive: true })
 writeFileSync(resolve(outDir, 'qrick.bookmarklet.txt'), href)
@@ -101,7 +106,8 @@ const installPage = `<!doctype html>
   </head>
   <body>
     <h1>QRick bookmarklet</h1>
-    <p>Drag the button onto your bookmarks bar. Press it on any page to get a QR code for that page.</p>
+    <p>Generate and scan QR codes. Everything stays on your device.</p>
+    <p>Drag the button onto your bookmarks bar. Press it on a page to generate a QR code, or choose Scan to read one using your camera. Camera scanning requires an HTTPS page that allows camera access. Scanning uses only the browser’s native QR detection API. If your browser does not support it, use the QRick extension to scan; QR generation still works in the bookmarklet.</p>
     <a class="grab" href="${href.replace(/&/g, '&amp;').replace(/</g, '&lt;')}">QRick</a>
     <p>Clicking it here does nothing useful — it needs to live in the bookmarks bar. On mobile, save any page as a bookmark, then edit the bookmark and replace its address with the snippet from the README.</p>
   </body>

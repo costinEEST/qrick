@@ -106,4 +106,34 @@ describe('panel', () => {
     panel.destroy()
     expect(document.body.contains(panel.root)).toBe(false)
   })
+  it('stops the camera when switching from Scan to Generate', async () => {
+    const stop = vi.fn()
+    vi.stubGlobal('BarcodeDetector', class {
+      static async getSupportedFormats() { return ['qr_code'] }
+      async detect() { return [] }
+    })
+    const originalMediaDevices = Object.getOwnPropertyDescriptor(navigator, 'mediaDevices')
+    Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: {
+      getUserMedia: vi.fn().mockResolvedValue({ getTracks: () => [{ stop }] }),
+    } })
+    const play = vi.spyOn(HTMLMediaElement.prototype, 'play').mockResolvedValue()
+    const { panel } = mount({ value: 'https://example.com' })
+    try {
+      const buttons = [...panel.root.querySelectorAll<HTMLButtonElement>('button')]
+      buttons.find((button) => button.textContent === 'Scan')!.click()
+      buttons.find((button) => button.textContent === 'Start camera')!.click()
+      for (let i = 0; i < 16; i++) await Promise.resolve()
+      buttons.find((button) => button.textContent === 'Generate')!.click()
+      expect(stop).toHaveBeenCalledOnce()
+      expect(panel.root.querySelector<HTMLElement>('.qrick__scanner')!.hidden).toBe(true)
+      expect(panel.root.querySelector('.qrick__plate svg')).not.toBeNull()
+    } finally {
+      panel.destroy()
+      play.mockRestore()
+      vi.unstubAllGlobals()
+      if (originalMediaDevices) Object.defineProperty(navigator, 'mediaDevices', originalMediaDevices)
+      else Reflect.deleteProperty(navigator, 'mediaDevices')
+    }
+  })
+
 })

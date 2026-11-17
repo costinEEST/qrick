@@ -78,7 +78,7 @@ function open(): void {
 
   const panel = createPanel({
     value: location.href,
-    title: 'Scan to open on your phone',
+    title: 'Create a QR code',
     onClose: close,
   })
   host.addEventListener(CLOSE_EVENT, teardown, { once: true })

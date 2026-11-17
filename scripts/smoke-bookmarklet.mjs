@@ -21,6 +21,8 @@ const check = (label, condition) => {
   checks.push({ label, ok: Boolean(condition) })
 }
 
+check('fits the Firefox bookmark URL limit', new URL(href).href.length < 65_536)
+check('contains no embedded WASM', !href.includes('AGFzbQ'))
 check('starts with the javascript: scheme', href.startsWith('javascript:'))
 check('has no raw whitespace a browser could strip', !/\s/.test(href))
 check('has no # that would truncate it', !href.includes('#'))
