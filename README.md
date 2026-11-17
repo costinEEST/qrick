@@ -1,6 +1,6 @@
 # QRick
 
-Turn the current page into a QR code and open it on another device. QRick is available as a browser extension and as a self-contained bookmarklet. Everything runs locally.
+Generate and scan QR codes. Everything stays on your device. QRick is available as a browser extension and as a self-contained bookmarklet.
 
 ## Table of contents
 
@@ -9,6 +9,7 @@ Turn the current page into a QR code and open it on another device. QRick is ava
 - [Install the extension](#install-the-extension)
 - [Test on Firefox for Android](#test-on-firefox-for-android)
 - [Local development](#local-development)
+- [Python support tooling](#python-support-tooling)
 - [Build a release](#build-a-release)
 - [Publish to extension stores](#publish-to-extension-stores)
 - [Implementation](#implementation)
@@ -19,6 +20,12 @@ Turn the current page into a QR code and open it on another device. QRick is ava
 - [License](#license)
 
 ## Functionality
+
+Choose **Scan**, then **Start camera** to read a QR code live. The bookmarklet uses only the browser's native `BarcodeDetector` API and checks for QR support before asking for camera access. If native QR detection is unavailable, it explains that scanning requires the QRick extension; generation remains available.
+
+The extension opens scanning in a dedicated tab and prefers native `BarcodeDetector` QR support, using bundled `qr` (paulmillr/qr) JavaScript decoding only when native QR detection is missing, lacks QR support, or cannot initialize. The decoder is included locally, with no CDN requests or WASM. Both surfaces process images on your device, stop the camera after a read, and let you copy the exact decoded text, explicitly open an HTTP(S) link, or generate a QR code from the result.
+
+The bookmarklet needs HTTPS or localhost and a page that permits camera access. Camera permission belongs to that page's origin. Switching back to Generate, hiding the page, or closing the scanner stops the camera. If access is blocked, allow the camera in browser settings or try another HTTPS page.
 
 Both surfaces open with the current URL selected and its QR code already rendered. You can replace the value with another URL or plain text and the QR code updates as you type.
 
@@ -33,7 +40,7 @@ Both surfaces open with the current URL selected and its QR code already rendere
 
 ## Install the bookmarklet
 
-The bookmarklet includes QRick and `uqr` in one `javascript:` URL. It makes no network request at runtime and works on pages with restrictive Content Security Policy settings.
+The bookmarklet includes QRick and `uqr` in one `javascript:` URL, with no WASM or scanning library. It makes no network request at runtime and generates QR codes on pages with restrictive Content Security Policy settings.
 
 Choose either installation method:
 
@@ -58,7 +65,9 @@ npm run build
 1. Open `chrome://extensions`.
 2. Enable **Developer mode**.
 3. Select **Load unpacked**.
-4. Choose `dist/extension`.
+4. Choose the entire `dist/extension` folder (not its manifest or ZIP).
+
+For Edge, use `edge://extensions` and the same folder. Click Reload after rebuilding an already loaded extension.
 
 The same build is intended for current Chrome, Edge, Brave, Arc, Opera, Vivaldi, and other current Chromium browsers.
 
@@ -67,6 +76,8 @@ The same build is intended for current Chrome, Edge, Brave, Arc, Opera, Vivaldi,
 1. Open `about:debugging#/runtime/this-firefox`.
 2. Select **Load Temporary Add-on**.
 3. Choose `dist/extension-firefox/manifest.json`.
+
+Keep the whole output folder together. Use **Load Temporary Add-on** in `about:debugging`, rather than **Install Add-on From File** in `about:addons`; local builds are unsigned.
 
 Temporary extensions disappear after Firefox restarts. Run `npm run package` to create a versioned Firefox package for signing or store submission.
 
@@ -115,17 +126,25 @@ npm run test:watch      # tests in watch mode
 npm run build           # icons, extension variants, and bookmarklet
 npm run smoke           # execute the built bookmarklet in jsdom
 npm run verify          # typecheck, tests, build, smoke, package invariants
-npm run assets:store    # capture a 1280x800 store screenshot in Chrome
+npm run assets:promo    # export the retained promotional master at 440x280
+npm run assets:store    # capture generation and scanner screenshots in Chrome
+npm run validate:assets # verify screenshot, tile, and icon dimensions/formats
 npm run package         # create browser/source archives and checksums
 npm run release:check   # complete pre-release validation, including AMO lint
 ```
 
+## Python support tooling
+
+Optional project-skill tooling uses Python 3.15+, uv, Ruff, and ty. Start with `uv sync --locked`, then `uv run --locked python scripts/check_skills.py`. It is separate from the npm app toolchain. See [Python tooling](docs/python-tooling.md) for lint/type/test commands, the isolated Python 3.13 NVIDIA SkillEvaluator project, and CI details.
+
 ## Build a release
+
+See [release review and manual testing](docs/release-review.md) for the tested desktop browsers, outstanding Safari/Android checks, and source-reproduction steps. Version 1.1.0 adds camera scanning; see [the changelog](CHANGELOG.md) for release notes.
 
 Update every version-bearing file together:
 
 ```bash
-npm run version:set -- 1.0.1
+npm run version:set -- 1.1.0
 ```
 
 Commit the version change, then build and inspect a complete release:
@@ -137,19 +156,19 @@ npm run release:check
 The resulting files are:
 
 ```text
-dist/qrick-chrome-v1.0.1.zip
-dist/qrick-firefox-v1.0.1.zip
-dist/qrick-safari-v1.0.1.zip
-dist/qrick-source-v1.0.1.zip
+dist/qrick-chrome-v1.1.0.zip
+dist/qrick-firefox-v1.1.0.zip
+dist/qrick-safari-v1.1.0.zip
+dist/qrick-source-v1.1.0.zip
 dist/SHA256SUMS.txt
 ```
 
-The source archive lets Mozilla reproduce the minified Firefox package. It contains the locked dependencies, source, tests, configuration, build scripts, privacy policy, and build instructions, without `node_modules`, `.git`, or `dist`.
+The source archive includes reviewer instructions and third-party library provenance. It lets Mozilla reproduce the minified Firefox package. It contains the locked dependencies, source, tests, configuration, build scripts, privacy policy, and build instructions, without `node_modules`, `.git`, or `dist`.
 
 After verifying the archives, tag the version and push it:
 
 ```bash
-git tag v1.0.1
+git tag v1.1.0
 git push origin main --follow-tags
 ```
 
@@ -168,7 +187,7 @@ First-time store publication remains manual because each store requires account 
 
 ## Implementation
 
-QRick uses ESM, TypeScript, native HTML/CSS/DOM APIs, Vite, and Vitest. [`uqr`](https://github.com/unjs/uqr) is the only runtime dependency.
+QRick uses ESM, TypeScript, native HTML/CSS/DOM APIs, Vite, and Vitest. [`uqr`](https://github.com/unjs/uqr) generates QR codes and [`qr`](https://github.com/paulmillr/qr) provides the extension’s local JavaScript scanning fallback.
 
 ```text
 bookmarklet/
@@ -194,7 +213,7 @@ Generated build output lives in ignored `dist/`. The two files in `bookmarklet/`
 
 ## Browser and toolchain targets
 
-The project intentionally targets only current stable desktop browsers as checked on September 13, 2026:
+The following are the declared minimum browser and toolchain versions (they are not a claim about today’s latest stable releases):
 
 | Platform | Target |
 | --- | --- |
@@ -219,7 +238,7 @@ Source and builds use ESM and an `esnext` compilation target. Older browser vers
 
 ## Privacy and permissions
 
-QRick performs QR generation entirely on the device. It sends no URL or text to a server, stores no history, and includes no analytics.
+QRick performs QR generation and camera decoding entirely on the device. Camera permission is requested only after Start camera; video is not recorded or uploaded. It sends no URL or text to a server, stores no history, and includes no analytics.
 
 The extension requests only `activeTab`. That temporary permission lets it read the active page URL after the user invokes the extension. It has no host permissions, background service worker, or content script.
 
@@ -229,4 +248,4 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## License
 
-[Zero-Clause BSD](LICENSE), a permissive license with no attribution condition.
+[Zero-Clause BSD](LICENSE) for QRick source. Bundled dependencies retain their own licenses; see [third-party notices](THIRD-PARTY-NOTICES.txt).

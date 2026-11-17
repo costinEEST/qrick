@@ -1,6 +1,6 @@
 # QRick privacy policy
 
-Last updated: September 13, 2026
+Last updated: November 17, 2026
 
 QRick creates QR codes locally in your browser. It does not collect, transmit, sell, share, or retain personal data.
 
@@ -9,6 +9,10 @@ QRick creates QR codes locally in your browser. It does not collect, transmit, s
 When you open the extension, QRick reads the URL of the active tab using the browser's `activeTab` permission. When you use the bookmarklet, it reads the current page URL. If you edit the field, QRick handles the text you enter. This information exists only in the open popup or dialog and is used only to create the displayed QR code and any image you explicitly copy or download.
 
 QRick does not send this information off your device or save it after the popup or dialog closes.
+
+## Camera scanning
+
+When you press **Start camera**, QRick requests camera access and processes video frames locally using the browser's native barcode detector. When native QR detection is unavailable, the extension uses bundled `qr` (paulmillr/qr) JavaScript decoding as a local fallback. The bookmarklet uses native detection only. It does not record, upload, or store video. The decoded text remains in the open scanner until replaced or closed. The camera stops after a successful read, when you stop scanning, switch to Generate, hide the page, or close the scanner. The bookmarklet uses the host page's camera permission; the extension uses its own scanner tab.
 
 ## Permissions
 
@@ -29,7 +33,7 @@ The bundled [`uqr`](https://github.com/unjs/uqr) library generates QR codes loca
 
 ## Clipboard and downloads
 
-QRick accesses the clipboard only when you press **Copy image**. It creates downloaded PNG or SVG files only when you press the corresponding save button. These actions are handled by your browser.
+QRick accesses the clipboard only when you press **Copy image** or **Copy text**. It creates downloaded PNG or SVG files only when you press the corresponding save button. These actions are handled by your browser.
 
 ## Changes
 

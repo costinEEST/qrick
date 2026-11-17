@@ -27,6 +27,9 @@ if (!process.argv.includes('--no-build')) {
 rmSync(firefoxDir, { recursive: true, force: true })
 cpSync(chromeDir, firefoxDir, { recursive: true })
 
+cpSync(resolve(root, 'THIRD-PARTY-NOTICES.txt'), resolve(chromeDir, 'THIRD-PARTY-NOTICES.txt'))
+cpSync(resolve(root, 'THIRD-PARTY-NOTICES.txt'), resolve(firefoxDir, 'THIRD-PARTY-NOTICES.txt'))
+
 const manifest = JSON.parse(readFileSync(resolve(chromeDir, 'manifest.json'), 'utf8'))
 delete manifest.minimum_chrome_version
 manifest.browser_specific_settings = {

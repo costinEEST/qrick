@@ -7,7 +7,7 @@ Use the common copy in [shared.md](shared.md).
 - Markets: All markets
 - Category: Productivity
 - Mature content: No
-- Personal information accessed, collected, or transmitted: The active URL is accessed temporarily but is not collected or transmitted; provide the public privacy-policy URL
+- Personal information accessed, collected, or transmitted: The active URL, camera frames, and decoded text are processed locally and temporarily; none is collected or transmitted; provide the public privacy-policy URL
 - Remote code: No
 - Package: `dist/qrick-chrome-vX.Y.Z.zip`
 - Logo: use the 128 px package icon

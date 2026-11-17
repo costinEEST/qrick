@@ -1,8 +1,8 @@
 /**
  * Generates the extension icons.
  *
- * A dependency-free PNG encoder (zlib is in Node) keeps the promise that the
- * only runtime or build dependency in this repo is uqr.
+ * A dependency-free PNG encoder uses Node’s built-in zlib. The small QR mark
+ * represents both generation and scanning; no external image tool is needed.
  *
  *   node scripts/make-icons.mjs
  */

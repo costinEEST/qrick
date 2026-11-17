@@ -43,6 +43,15 @@ check(
 
 for (const directory of [chromeDir, firefoxDir, safariDir]) {
   const files = readdirSync(directory, { recursive: true })
+  const manifest = JSON.parse(readFileSync(resolve(directory, 'manifest.json'), 'utf8'))
+  check(JSON.stringify(manifest.permissions) === JSON.stringify(['activeTab']), `${directory} requests unexpected permissions`)
+  check(!manifest.host_permissions?.length && !manifest.background && !manifest.content_scripts, `${directory} introduces background or host access`)
+  const policy = manifest.content_security_policy?.extension_pages ?? ''
+  check(policy === "script-src 'self'; object-src 'self'", `${directory} must restrict scripts to local JavaScript`)
+  for (const file of ['THIRD-PARTY-NOTICES.txt', 'icons/icon-16.png', 'icons/icon-32.png', 'icons/icon-48.png', 'icons/icon-128.png']) {
+    check(files.includes(file), `${directory} is missing ${file}`)
+  }
+
   check(!files.some((file) => String(file).endsWith('.map')), `${directory} contains a source map`)
   const popup = readFileSync(resolve(directory, 'popup.html'), 'utf8')
   check(
@@ -54,6 +63,8 @@ for (const directory of [chromeDir, firefoxDir, safariDir]) {
   check(!/<script(?![^>]*\bsrc=)/i.test(popup), `${directory} contains an inline script`)
   const bundle = readFileSync(resolve(directory, 'popup.js'), 'utf8')
   check(!/\beval\s*\(/.test(bundle), `${directory} contains eval()`)
+  check(!bundle.includes('data:application/wasm') && !/\bWebAssembly\b/.test(bundle), `${directory} must not include WASM`)
+  check(!files.some((file) => String(file).endsWith('.wasm')), `${directory} contains a WASM asset`)
 }
 
 if (errors.length > 0) {
