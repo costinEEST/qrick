@@ -176,6 +176,10 @@ The tag triggers `.github/workflows/release.yml`, repeats the complete validatio
 
 ## Publish to extension stores
 
+For normal Firefox installation, use the [Mozilla Add-ons listing](https://addons.mozilla.org/firefox/addon/qrick/). The [Mozilla-signed 1.1.0 XPI](https://addons.mozilla.org/firefox/downloads/file/5267185/qrick-1.1.0.xpi) is also available. The generated Firefox ZIP is unsigned and intended for store submission or temporary developer loading.
+
+Version-specific GitHub release notes live in [`docs/releases/`](docs/releases/). The release workflow uses the matching tag's Markdown file when present, otherwise it generates notes automatically. The [1.1.0 notes](docs/releases/v1.1.0.md) distinguish installation downloads from submission and source archives.
+
 Copy-ready descriptions, privacy answers, permission justifications, and reviewer instructions live in [`store-listing/`](store-listing/). Required and reusable images live in [`store-assets/`](store-assets/). The public [privacy policy](PRIVACY.md) must be available from the repository's default branch before submitting.
 
 - **Chrome Web Store:** upload the versioned Chrome ZIP, complete the listing and Privacy tabs from `store-listing/chrome.md`, and upload the 128 px icon, 1280×800 screenshot, and 440×280 promotional tile.
