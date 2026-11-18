@@ -47,4 +47,6 @@ Provide version-specific library links in the AMO submission as required by Mozi
 
 ## Publication remains manual
 
-Version 1.1.0 is selected. Before submission, publish the matching privacy policy and sources, inspect screenshots, and provide the relevant account/store metadata. Firefox permanent distribution requires Mozilla signing; Safari requires conversion/signing and containing-app testing. Follow store-listing/ for fields and reviewer notes. Never upload source archives as installable add-ons.
+Version 1.1.0 is approved on [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/qrick/) (November 17, 2026) and in the [Chrome Web Store](https://chromewebstore.google.com/detail/qrick/plofdlfickiacjdmcfcejlabloejihfp) (maintainer confirmation on November 18, 2026). Use those listings for normal installation; the generated browser ZIPs remain submission or developer-loading artifacts.
+
+For future submissions, publish the matching privacy policy and sources, inspect screenshots, and provide the relevant account/store metadata. Firefox permanent distribution requires Mozilla signing; Safari requires conversion/signing and containing-app testing. Follow store-listing/ for fields and reviewer notes. Never upload source archives as installable add-ons.

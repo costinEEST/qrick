@@ -7,7 +7,7 @@ Use the common copy in [shared.md](shared.md).
 - Experimental: No
 - Requires payment, non-free services, or extra hardware: No for generation; camera scanning requires a working camera
 - Data collection: None; the manifest declares `required: ["none"]`
-- License: Zero-Clause BSD for QRick; bundled libraries retain their MIT/Apache licenses (see THIRD-PARTY-NOTICES.txt)
+- License: BSD Zero Clause License (0BSD) for QRick (see LICENSE); bundled libraries retain their MIT/Apache licenses (see THIRD-PARTY-NOTICES.txt)
 - Category: Productivity
 - Source code required: Yes, because the submitted bundle is minified
 - Add-on package: `dist/qrick-firefox-vX.Y.Z.zip`

@@ -53,7 +53,9 @@ On mobile, create any bookmark and then replace its address with the contents of
 
 ## Install the extension
 
-Build the extension first:
+Install version 1.1.0 from the [Chrome Web Store](https://chromewebstore.google.com/detail/qrick/plofdlfickiacjdmcfcejlabloejihfp) or [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/qrick/).
+
+For local developer loading, build the extension first:
 
 ```bash
 npm ci
@@ -176,6 +178,8 @@ The tag triggers `.github/workflows/release.yml`, repeats the complete validatio
 
 ## Publish to extension stores
 
+Version 1.1.0 is approved in the [Chrome Web Store](https://chromewebstore.google.com/detail/qrick/plofdlfickiacjdmcfcejlabloejihfp) and on Mozilla Add-ons.
+
 For normal Firefox installation, use the [Mozilla Add-ons listing](https://addons.mozilla.org/firefox/addon/qrick/). The [Mozilla-signed 1.1.0 XPI](https://addons.mozilla.org/firefox/downloads/file/5267185/qrick-1.1.0.xpi) is also available. The generated Firefox ZIP is unsigned and intended for store submission or temporary developer loading.
 
 Version-specific GitHub release notes live in [`docs/releases/`](docs/releases/). The release workflow uses the matching tag's Markdown file when present, otherwise it generates notes automatically. The [1.1.0 notes](docs/releases/v1.1.0.md) distinguish installation downloads from submission and source archives.
@@ -187,7 +191,7 @@ Copy-ready descriptions, privacy answers, permission justifications, and reviewe
 - **Microsoft Edge Add-ons:** upload the same Chrome ZIP and complete Partner Center using `store-listing/edge.md`.
 - **Safari:** upload the dedicated Safari ZIP to App Store Connect's Safari Web Extension Packager or pass `dist/extension-safari` to `xcrun safari-web-extension-converter`, test through TestFlight, then submit the containing app.
 
-First-time store publication remains manual because each store requires account verification, agreements, listing review, and permanent item IDs. Store-upload automation should only be added after those IDs exist; credentials belong in repository secrets, never in source files.
+Store submissions remain manual. Chrome and Firefox have published listings; first-time publication to other stores still requires account verification, agreements, listing review, and permanent item IDs. Store-upload automation should only be added after those IDs exist; credentials belong in repository secrets, never in source files.
 
 ## Implementation
 
@@ -252,4 +256,4 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## License
 
-[Zero-Clause BSD](LICENSE) for QRick source. Bundled dependencies retain their own licenses; see [third-party notices](THIRD-PARTY-NOTICES.txt).
+[BSD Zero Clause License (0BSD)](LICENSE) for QRick source, copyright 2026 Constantin Câmpean. The license text comes from [Choose a License](https://choosealicense.com/licenses/0bsd/) and is also published by the [Open Source Initiative](https://opensource.org/license/0bsd). Bundled dependencies retain their own licenses; see [third-party notices](THIRD-PARTY-NOTICES.txt).

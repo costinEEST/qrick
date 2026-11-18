@@ -1,5 +1,13 @@
 # Chrome Web Store fields
 
+## Publication status
+
+- Listing: [QRick on the Chrome Web Store](https://chromewebstore.google.com/detail/qrick/plofdlfickiacjdmcfcejlabloejihfp)
+- Extension ID: `plofdlfickiacjdmcfcejlabloejihfp`
+- Version 1.1.0: approved, as confirmed by the maintainer on November 18, 2026.
+
+## Submission fields
+
 Use the common copy in [shared.md](shared.md).
 
 - Language: English (United States)
